@@ -1,5 +1,5 @@
 /* eslint-env node */
-import webpaco from 'webpack';
+import webpack from 'webpack';
 import path from 'path';
 import cssnext from 'cssnext';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -9,7 +9,7 @@ const bundle = process.env.BUNDLE || 'client';
 
 const cfg = {
   context: path.join(__dirname, 'app'),
-  entry: ['./', + bundle],
+  entry: ['./' + bundle],
 
   plugins: [
     new webpack.DefinePlugin({
@@ -32,7 +32,7 @@ const cfg = {
 };
 
 const jsLoader = {
-  text: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']
+  test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']
 };
 
 if (bundle === 'server') {
@@ -72,7 +72,7 @@ if (bundle === 'server') {
       new ExtractTextPlugin('css/[name].css')
     );
 
-    cfg.module.loader.push({
+    cfg.module.loaders.push({
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css')
     }, {
@@ -89,7 +89,7 @@ if (bundle === 'server') {
     }, {
       test: /\.styl$/,
       loader:
-        'style!css?modules&localIdentName=[local]__[hash:base64:10]!stylus'
+        'style!css?modules&localIdentName=[local]___[hash:base64:10]!stylus'
     });
   }
 }
@@ -105,12 +105,12 @@ if (env !== 'production') {
 
   cfg.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   );
 
   jsLoader.loaders.unshift('react-hot');
 }
 
-cfg.modules.loaders.push(jsLoader);
+cfg.module.loaders.push(jsLoader);
 
 module.exports = cfg;
