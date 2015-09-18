@@ -17,7 +17,7 @@ import getHeaders from '../utils/getHeaders';
 const baseUrl = 'http://localhost:1337';
 
 export function fetchPosts() {
-  return asynx (dispatch) => {
+  return async (dispatch) => {
     try {
       const posts = (await axios.get(`${baseUrl}/posts`)).data;
       dispatch({ type: FETCH_POSTS_SUCCESS, posts });
@@ -39,7 +39,7 @@ export function fetchPost(id) {
       const post = (await axios.get(`${baseUrl}/posts/${id}`, {
         headers
       })).data;
-      
+
       dispatch({ type: FETCH_POST_SUCCESS, post });
     } catch(error) {
       dispatch({

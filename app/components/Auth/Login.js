@@ -10,7 +10,7 @@ export default class Login extends React.Component {
   }
 
   static contextTypes = {
-    router: PropTypes.object
+    router: React.PropTypes.object
   }
 
   state = {
@@ -32,48 +32,56 @@ export default class Login extends React.Component {
 
   render() {
     const { auth: { error } } = this.props;
-    const { email, passwor } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div styleName="wrapper">
         <div styleName="title">Login</div>
 
-        {error ? <div>{error.message}</div> : null}
+        {error
+          ? <div>{error.message}</div>
+          : null}
 
         <div styleName="code">
           <code>
-            <span styleName="hilight">email@address.com</span>
+            <span styleName="hilight">email@adress</span>
           </code>
           <br />
           <code>
-            <span styleName="hilight">password</span>
+            <span styleName="hilight">pass</span>
           </code>
         </div>
 
         <form onSubmit={this.handleLogin}>
-          <label htmlFor="email">E-Mail<label>
-          <input
-            styleName="input"
-            value={email}
-            onChange={this.handleChange('email')}
-            id="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
+            <label htmlFor="email">E-mail</label>
 
-          <label htmlFor="password">Password</label>
-          <input
-            styleName="input"
-            value={password}
-            onChange={this.handleChange('password')}
-            id="password"
-            type="password"
-            placeholder="Password"
-            required
-          />
+            <input
+              styleName="input"
+              value={email}
+              onChange={this.handleChange('email')}
+              id="email"
+              type="email"
+              placeholder="Email"
+              required
+            />
 
-          <button styleName="btn" type="submit">Login</button>
+            <label htmlFor="password">Password</label>
+            <input
+              styleName="input"
+              value={password}
+              onChange={this.handleChange('password')}
+              id="password"
+              type="password"
+              placeholder="Password"
+              required
+            />
+
+            <button
+              styleName="btn"
+              type="submit"
+            >
+            Login
+            </button>
         </form>
       </div>
     );

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
-import cookie from '../utils/cookie';
+import cookie from './utils/cookie';
 import routes from './routes';
 import { routerStateChange } from './actions/router';
 import { createRedux } from './utils/redux';

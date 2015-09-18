@@ -3,7 +3,7 @@ import styles from './styles.styl';
 
 import React, { PropType } from 'react';
 import { Link } from 'react-router';
-impot CSSModules from 'react-css-modules';
+import CSSModules from 'react-css-modules';
 
 @CSSModules(styles)
 export default class Dashboard extends React.Component {
